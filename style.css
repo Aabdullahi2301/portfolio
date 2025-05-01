@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Noto+Sans+JP:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Arrows:wght@400..700&display=swap');
+h1, h2, h3, h4{
+	font-family: "Inconsolata", serif;
+}
+h1, h2{
+	text-align: center;
+	color: #D2B48C;
+
+}
+h3{
+	color: red;
+}
+body{
+	font-family: "Noto Sans JP", serif;
+	margin: 0;
+	border-top: solid 15px #5C7C89;
+	border-bottom: solid 15px #5C7C89;
+}
+
+/* Website Links except the nav */
+
+a:link{
+	color: white;
+}
+a:visited{
+	color: white;
+}
+a:hover{
+	color: red;
+}
+a:active{
+	color: black;
+}
+header{
+	text-align: center;
+	
+
+}
+	
+
+/* Navigation CSS*/ 	
+nav{
+	background-color: #1F4959;
+	padding: 5px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+
+}
+		nav ul{
+			list-style-type: none;
+			text-align: center;
+			margin: 8px 0;
+			padding: 0;
+		}
+		nav li{
+			display: inline;
+			padding: 10px;
+		}
+		nav a{
+			text-decoration: none;
+		}
+		nav a:link{
+		  	color: #011425 ;
+		}
+		nav a:visited{
+		  	color: #011425;
+		}
+		nav a:hover{
+		  	color:white;
+		}
+		nav a:active{
+		  	color:black;
+		}
+
+.home-hero{
+	
+	height: 400px;
+	background-size: cover;
+
+}
+	.home-hero h1{
+		text-align: center;
+		color: #FFFFFF;
+		text-shadow: 2px 2px 2px black;
+		padding-top: 115px;
+		font-weight: normal;
+		margin: 0;
+		font-size: 4em;
+}
+
+/* Main CSS*/		
+main{
+	max-width: 800px;
+	margin: 20px auto;
+	padding: 10px;
+}
+.float-right{
+	float: right;
+	max-width: 50%;
+	height: auto;
+	margin-left: 30px;
+	border: solid 2px black;
+}
+#game{
+	margin: 0 auto;
+	display: block;
+}
+.fa{
+	color: #1F4959;
+	font-size: 4em;
+}
+.col-sm-3 {
+	color:#011425;
+	
+}
+
+.gallery .preview{
+    width: 100%;
+    height: auto;
+}
+
+.gallery .gallery-thumbnails img {
+    width: 100px;
+    height: 75px;
+    margin: 3px 10px 10px 0;
+}
+
+.gallery .gallery-thumbnails img:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.gallery .preview img#preview {
+    padding: 1px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto !important;
+    display: block !important;
+}
+
+
+
+/*Footer CSS*/
+footer{
+	background-color: #5C7C89;
+	border-top: 3px solid black;
+	text-align: center;
+	color: white;
+	height: 100px;
+}
+
+/*CSS without a media query--applies to all sizes unless overridden*/
+h1{
+		font-size: 4em;
+ }
+/* CSS Adjustments for Tablets */
+
+@media only screen and (max-width: 1024pxx)
+{
+	h1{
+		font-size: 2em;
+	}
+}
+
+/* CSS Adjustments for Smartphones */
+@media only screen and (max-width: 768px) {
+	h1{
+		font-size: 1.2em;
+	}
+}
