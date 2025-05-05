@@ -3,13 +3,17 @@
 h1, h2, h3, h4{
 	font-family: "Inconsolata", serif;
 }
-h1, h2{
+h1{
 	text-align: center;
-	color: #D2B48C;
+	color: #1C7599;
 
 }
+h2{
+	text-align: center;
+	color: gray;
+}
 h3{
-	color: red;
+	color: #00668F;
 }
 body{
 	font-family: "Noto Sans JP", serif;
@@ -21,20 +25,20 @@ body{
 /* Website Links except the nav */
 
 a:link{
-	color: white;
+	color: #1F4959;
 }
 a:visited{
-	color: white;
+	color: #1F4959;
 }
 a:hover{
-	color: red;
+	color: white;
 }
 a:active{
 	color: black;
 }
 header{
 	text-align: center;
-	
+	max-width: autp 0;
 
 }
 	
@@ -61,22 +65,27 @@ nav{
 			text-decoration: none;
 		}
 		nav a:link{
-		  	color: #011425 ;
+		  	color: white ;
 		}
 		nav a:visited{
-		  	color: #011425;
+		  	color: white;
 		}
 		nav a:hover{
-		  	color:white;
+		  	color:#011425;
 		}
 		nav a:active{
-		  	color:black;
+		  	color:#D2B48C;
 		}
 
 .home-hero{
-	
-	height: 400px;
-	background-size: cover;
+	background-image: url(images/mpls.png);
+	max-width: auto 0;
+	height: auto;
+	background-size:cover ;
+	display: block;
+	margin: auto 0;
+	background-position:  center;
+	background-repeat: no-repeat;
 
 }
 	.home-hero h1{
@@ -87,6 +96,7 @@ nav{
 		font-weight: normal;
 		margin: 0;
 		font-size: 4em;
+		padding-bottom: 30px;
 }
 
 /* Main CSS*/		
@@ -137,6 +147,35 @@ main{
     height: auto;
     margin: 0 auto !important;
     display: block !important;
+}
+.gallery .preview1{
+    width: 100%;
+    height: auto;
+}
+
+.gallery .gallery-thumbnails img {
+    width: 100px;
+    height: 75px;
+    margin: 3px 10px 10px 0;
+}
+
+.gallery .gallery-thumbnails img:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.gallery .preview1 img#preview {
+    padding: 1px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto !important;
+    display: block !important;
+}
+.gallery{
+	border: solid black 3px;
+}
+p{
+	text-align: center;
 }
 
 

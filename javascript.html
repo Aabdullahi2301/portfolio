@@ -17,13 +17,14 @@
           border: 3px solid #D2B48C;
           background-color: #D2B48C;
           border-radius: 5%;
-          background-image: url(images/beach.jpg);
+          background-image: url(images/sky.jpg);
           color: blue;
           margin: 0 auto;
+          background-size: cover;
 
         }
         .myButton{
-            background-color: red;
+            background-color: #1C7599;
 
         }
         #game{
@@ -37,7 +38,7 @@
 <body onload="startGame()">
 
     <header>
-        <img src="images/logo.png" alt="Abdirahman's Logo" height="150px" width="450px">
+        <img src="images/logo.png" alt="Abdirahman's Logo" height="100px" width="300px">
     </header>
 
   
@@ -50,179 +51,195 @@
             <li><a href="javascript.html">Javascript</a></li>
         </ul>
     </nav>
-  
+    
     <main>
 
-        <h1>Fly Abdirahman!! Game</h1>
-        <hr>
-      
-        <p>I made this website by completing the W3school    tutorial. Then I enhance the game by making it larger, adding CSS, and a background images to the game.</p>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
 
-        <h3>Help me fly through the maze. Use the FLY!! button to fly high throught the barriers. How far can we go? </h3>
-      
-        <div id="game" ></div>
-        <div class="game-controls">
-          <button class="myButton" onmousedown="accelerate(-0.5)" onmouseup="accelerate(0.1)">FLY!!</button>
+                    <h1>Fly Abdirahman!! Game</h1>
+                    <hr>
+                  
+                    <p>I made this website by completing the W3school    tutorial. Then I enhance the game by making it larger, adding CSS, background images, and many other little detailed to add to the game.</p>
+
+                    <h3>Help me fly through the maze. Use the FLY!! button to fly high throught the barriers. How far can we go? </h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    
+                    <div id="game" ></div>
+                    <div class="game-controls">
+                      <button class="myButton" onmousedown="accelerate(-0.5)" onmouseup="accelerate(0.1)">FLY!!</button>
+                    </div>
+                    <a href=""><button class="myButton">PLAY AGAIN</button></a>
+
+                    <script>
+
+                        var myGamePiece;
+                        var myObstacles = [];
+                        var myScore;
+                        
+                        function startGame() {
+                            myGamePiece = new component(30, 30, "#1F4959", 10, 120);
+                            myGamePiece.gravity = 0.05;
+                            myScore = new component("30px", "Consolas", "#D2B48C", 420, 40, "text");
+                            myGameArea.start();
+                        }
+                        
+                        var myGameArea = {
+                            canvas : document.createElement("canvas"),
+                            start : function() {
+                                this.canvas.width = 640;
+                                this.canvas.height = 360;
+                                this.context = this.canvas.getContext("2d");
+                                var myGame = document.getElementById("game");
+                                myGame.insertBefore(this.canvas, myGame.childNodes[0]);        
+                                this.frameNo = 0;
+                                this.interval = setInterval(updateGameArea, 20);
+                             },
+                            clear : function() {
+                                this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                            }
+                        }
+                        
+                        function component(width, height, color, x, y, type) {
+                            this.type = type;
+                            this.score = 0;
+                            this.width = width;
+                            this.height = height;
+                            this.speedX = 0;
+                            this.speedY = 0;    
+                            this.x = x;
+                            this.y = y;
+                            this.gravity = 0;
+                            this.gravitySpeed = 0;
+                            this.update = function() {
+                                ctx = myGameArea.context;
+                                if (this.type == "text") {
+                                    ctx.font = this.width + " " + this.height;
+                                    ctx.fillStyle = color;
+                                    ctx.fillText(this.text, this.x, this.y);
+                                } else {
+                                    ctx.fillStyle = color;
+                                    ctx.fillRect(this.x, this.y, this.width, this.height);
+                                }
+                            }
+                            this.newPos = function() {
+                                this.gravitySpeed += this.gravity;
+                                this.x += this.speedX;
+                                this.y += this.speedY + this.gravitySpeed;
+                                this.hitBottom();
+                            }
+                            this.hitBottom = function() {
+                                var rockbottom = myGameArea.canvas.height - this.height;
+                                if (this.y > rockbottom) {
+                                    this.y = rockbottom;
+                                    this.gravitySpeed = 0;
+                                }
+                             }
+                            this.crashWith = function(otherobj) {
+                                var myleft = this.x;
+                                var myright = this.x + (this.width);
+                                var mytop = this.y;
+                                var mybottom = this.y + (this.height);
+                                var otherleft = otherobj.x;
+                                var otherright = otherobj.x + (otherobj.width);
+                                var othertop = otherobj.y;
+                                var otherbottom = otherobj.y + (otherobj.height);
+                                var crash = true;
+                                if ((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright)) {
+                                    crash = false;
+                                }
+                                return crash;
+                            }
+                        }
+                        
+                        function updateGameArea() {
+                            var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+                            for (i = 0; i < myObstacles.length; i += 1) {
+                                if (myGamePiece.crashWith(myObstacles[i])) {
+                                    return;
+                                } 
+                            }
+                            myGameArea.clear();
+                            myGameArea.frameNo += 1;
+                            if (myGameArea.frameNo == 1 || everyinterval(150)) {
+                                x = myGameArea.canvas.width;
+                                minHeight = 20;
+                                maxHeight = 200;
+                                height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
+                                minGap = 50;
+                                maxGap = 200;
+                                gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
+                                myObstacles.push(new component(20, height, "#333333", x, 0));
+                                myObstacles.push(new component(20, x - height - gap, "#333333", x, height + gap));
+                            }
+                            for (i = 0; i < myObstacles.length; i += 1) {
+                                myObstacles[i].x += -1;
+                                myObstacles[i].update();
+                            }
+                            myScore.text="SCORE: " + myGameArea.frameNo;
+                            myScore.update();
+                            myGamePiece.newPos();
+                            myGamePiece.update();
+                        }
+                        
+                        function everyinterval(n) {
+                            if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
+                            return false;
+                        }
+                        
+                        function accelerate(n) {
+                            myGamePiece.gravity = n;
+                        }
+                    </script>
+                </div>
+            </div>
+    
+
         </div>
-        <a href=""><button class="myButton">PLAY AGAIN</button></a>
 
-        <script>
 
-            var myGamePiece;
-            var myObstacles = [];
-            var myScore;
-            
-            function startGame() {
-                myGamePiece = new component(30, 30, "red", 10, 120);
-                myGamePiece.gravity = 0.05;
-                myScore = new component("30px", "Consolas", "#D2B48C", 420, 40, "text");
-                myGameArea.start();
-            }
-            
-            var myGameArea = {
-                canvas : document.createElement("canvas"),
-                start : function() {
-                    this.canvas.width = 640;
-                    this.canvas.height = 360;
-                    this.context = this.canvas.getContext("2d");
-                    var myGame = document.getElementById("game");
-                    myGame.insertBefore(this.canvas, myGame.childNodes[0]);        
-                    this.frameNo = 0;
-                    this.interval = setInterval(updateGameArea, 20);
-                 },
-                clear : function() {
-                    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                }
-            }
-            
-            function component(width, height, color, x, y, type) {
-                this.type = type;
-                this.score = 0;
-                this.width = width;
-                this.height = height;
-                this.speedX = 0;
-                this.speedY = 0;    
-                this.x = x;
-                this.y = y;
-                this.gravity = 0;
-                this.gravitySpeed = 0;
-                this.update = function() {
-                    ctx = myGameArea.context;
-                    if (this.type == "text") {
-                        ctx.font = this.width + " " + this.height;
-                        ctx.fillStyle = color;
-                        ctx.fillText(this.text, this.x, this.y);
-                    } else {
-                        ctx.fillStyle = color;
-                        ctx.fillRect(this.x, this.y, this.width, this.height);
-                    }
-                }
-                this.newPos = function() {
-                    this.gravitySpeed += this.gravity;
-                    this.x += this.speedX;
-                    this.y += this.speedY + this.gravitySpeed;
-                    this.hitBottom();
-                }
-                this.hitBottom = function() {
-                    var rockbottom = myGameArea.canvas.height - this.height;
-                    if (this.y > rockbottom) {
-                        this.y = rockbottom;
-                        this.gravitySpeed = 0;
-                    }
-                 }
-                this.crashWith = function(otherobj) {
-                    var myleft = this.x;
-                    var myright = this.x + (this.width);
-                    var mytop = this.y;
-                    var mybottom = this.y + (this.height);
-                    var otherleft = otherobj.x;
-                    var otherright = otherobj.x + (otherobj.width);
-                    var othertop = otherobj.y;
-                    var otherbottom = otherobj.y + (otherobj.height);
-                    var crash = true;
-                    if ((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright)) {
-                        crash = false;
-                    }
-                    return crash;
-                }
-            }
-            
-            function updateGameArea() {
-                var x, height, gap, minHeight, maxHeight, minGap, maxGap;
-                for (i = 0; i < myObstacles.length; i += 1) {
-                    if (myGamePiece.crashWith(myObstacles[i])) {
-                        return;
-                    } 
-                }
-                myGameArea.clear();
-                myGameArea.frameNo += 1;
-                if (myGameArea.frameNo == 1 || everyinterval(150)) {
-                    x = myGameArea.canvas.width;
-                    minHeight = 20;
-                    maxHeight = 200;
-                    height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
-                    minGap = 50;
-                    maxGap = 200;
-                    gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-                    myObstacles.push(new component(20, height, "#333333", x, 0));
-                    myObstacles.push(new component(20, x - height - gap, "#333333", x, height + gap));
-                }
-                for (i = 0; i < myObstacles.length; i += 1) {
-                    myObstacles[i].x += -1;
-                    myObstacles[i].update();
-                }
-                myScore.text="SCORE: " + myGameArea.frameNo;
-                myScore.update();
-                myGamePiece.newPos();
-                myGamePiece.update();
-            }
-            
-            function everyinterval(n) {
-                if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
-                return false;
-            }
-            
-            function accelerate(n) {
-                myGamePiece.gravity = n;
-            }
-        </script>
+    </main>
 
-  </main>
-
-  <footer>
+    <footer>
             <!--Opened first Row-->
             <div class="row">
                 
                 <!--Opened first column-->
-                <div class="col-sm-3">
-                    <i class="fa fa-linkedin-square"></i>
-                    <p>Connect on LinkedIn</p>
+                <div class="col-sm-4">
+                    <a href="https://www.linkedin.com/in/abdirahman-abdullahi-376074363/" target="_blank">
+                        <i class="fa fa-linkedin-square" aria-hidden="true"></i><h4>Connect on LinkedIn</h4>
+                    </a>
                 <!--Closed first column-->
                 </div>
 
                 <!--Opened second column--> 
-                <div class="col-sm-3">
-                    <i class="fa fa-instagram"></i>
-                    <p>Follow on Instagram</p>
+                <div class="col-sm-4">
+                    <a href="https://github.com/Aabdullahi2301" target="_blank">
+                    <i class="fa fa-github"></i>
+                    <h4>Connect on Github</h4>
+                    </a>
                 <!--Closed second column-->
                 </div>
                 
                 <!--Opened third column-->
-                <div class="col-sm-3">
-                    <i class="fa fa-youtube-play"></i>
-                    <p>Subscribe on YouTube</p>
+                <div class="col-sm-4">
+                    <a href="mailto:Aabdulahi2301@gmail.com" target="_blank">
+                    <i class="fa fa-envelope"></i>
+                    <h4>Email Me</h4>
+                    </a>
                 <!--Closed third column-->
                 </div>
-                
-                <!--Opened fourth column-->
-                <div class="col-sm-3">
-                    <i class="fa fa-facebook-square"></i>
-                    <p>Follow on Facebook</p>
-                <!--Closed fourth column-->
+            <!--Closed first row--> 
+            </div>  
+            <div class="row">
+                <div class="col-sm-12">
+                    <br><small>&copy; Abdirahman 2025. All rights reserved.</small>
                 </div>
-    
-            <!--Closed first row-->
-            </div>
+            </div> 
     </footer>
 
     <!--jQuery, Popper, and Bootstrap Javascript files-->

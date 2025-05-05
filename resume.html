@@ -17,7 +17,7 @@
 <body>
 
   <header>
-    <img src="images/logo.png" alt="Abdirahman's Logo" height="150px" width="450px">
+    <img src="images/logo.png" alt="Abdirahman's Logo" height="100px" width="300px">
   </header>
 
 
@@ -34,68 +34,94 @@
  
   <!--Resume Part of Page-->
   <main>
-    <h1> Resume</h1> 
-    <h2>Professional Summary</h2>
-    <p> I am a Full-time student at Saint Paul College and is looking to graduating in the summer of 2026. I am seeking to learn the most of computer programming that there is to learn. I plan on being like a sponge and absorb all that I can.  </p>
-    <hr>
+    <div class="container-fluid">  
+      <div class="row">
+        <div class="col-sm-12">
+
+          <h1> Resume</h1> 
+          <h2>Professional Summary</h2>
+          <p> I am a Full-time student at Saint Paul College and is looking to graduating in the summer of 2026. I am seeking to learn the most of computer programming that there is to learn. I plan on being like a sponge and absorb all that I can.  </p>
+          <hr>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+
+          <img src="images/code.jpg" alt="Abdirahman coding on his laptop." height="500px" width="600px" class="float-right">
+
+          <h2>Skills</h2>
+          <ul>
+            <li>HTMl</li>
+            <li>CSS</li>
+            <li>Bootstrap</li>
+            <li>Reponsive Design</li>
+            <li>Some jQuery</li>
+            <li>Some JavaScript</li>
+            <li>Decision-making</li>
+            <li>Problem-solving</li> 
+            <li>Creative thinking</li> 
+            <li>Team guidance and motivation</li>
+            <li>Problem management</li>
+          </ul>
+          <hr>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="com-sm-12">
+
+          <h2>Work History</h2>
+
+          <h3>Midway Homecare Minneapolis</h3>
+
+          02/2022 to 10/2024
+          <p>House Manager</p>
+          <ul>
+            <li> Adapted quickly to last-minute changes in plans or circumstances without compromising on
+          quality or results.</li>
+            <li> Maintained professional, organized, and safe environment for employees.</li> 
+            <li>Maximized performance by monitoring daily activities and mentoring team members.</li>
+          </ul>
+          <hr>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="com-sm-12">
+
+          <h2>Education</h2>
+           <h3>Saint Paul College</h3><p>- Saint Paul, MN </p>
+          <ul> 
+            <li> <b>Associate of Science</b>: Computer Programming along with some certificate </li>
+            <li><b>Expected</b>: 05/2026</li>
+          </ul>
+          <h3>Thomas Edison High</h3>- Minneapolis, MN</p> 
+          <ul>
+            <li><b>High School Diploma</b></li>
+            <li><b>Graduated</b>: 2019</li>
+          </ul>
+          <hr>
+
+        </div>
+      </div>
 
 
-    <h2>Skills</h2>
-    <ul>
-      <li>HTMl</li>
-      <li>CSS</li>
-      <li>Bootstrap</li>
-      <li>Reponsive Design</li>
-      <li>Some jQuery</li>
-      <li>Some JavaScript</li>
-      <li>Preventive Maintenance</li>
-      <li>Decision-making</li>
-      <li>Problem-solving</li> 
-      <li>Creative thinking</li> 
-      <li>Team guidance and motivation</li>
-      <li>Personnel problem management</li>
-    </ul>
-    <hr>
+      <div class="row">
+        <div class="col-sm-12">
 
-    <img src="images/code.jpg" alt="Abdirahman coding on his laptop." height="500px" width="500px" class="float-right">
+          <h2>Languages</h2>
 
-    <h2>Work History</h2>
+          <ul>
+            <li><b>English</b>: First Language</li>
+            <li><b>Somali</b>: Native Language</li>
+            <li><b>Swahili</b>: Semi-Proficient</li>
+          </ul>
+          <hr>
+          
+        </div>
+      </div>
 
-    <h3>Midway Homecare Minneapolis</h3>
-
-    02/2022 to 10/2024
-    <p>House Manager</p>
-    <ul>
-      <li> Adapted quickly to last-minute changes in plans or circumstances without compromising on
-    quality or results.</li>
-      <li> Maintained professional, organized, and safe environment for employees.</li> 
-      <li>Maximized performance by monitoring daily activities and mentoring team members.</li>
-    </ul>
-    <hr>
-
-
-    <h2>Education</h2>
-     <h3>Saint Paul College</h3><p>- Saint Paul, MN </p>
-    <ul> 
-      <li> <b>Associate of Science</b>: Computer Programming along with some certificate </li>
-      <li><b>Expected</b>: 05/2026</li>
-    </ul>
-    <h3>Thomas Edison High</h3>- Minneapolis, MN</p> 
-    <ul>
-      <li><b>High School Diploma</b></li>
-      <li><b>Graduated</b>: 2019</li>
-    </ul>
-    <hr>
-
-
-    <h2>Languages</h2>
-
-    <ul>
-      <li><b>English</b>: First Language</li>
-      <li><b>Somali</b>: Native Language</li>
-      <li><b>Swahili</b>: Semi-Proficient</li>
-    </ul>
-    <hr>
   </main>
 
   <footer>
@@ -103,35 +129,37 @@
       <div class="row">
         
         <!--Opened first column-->
-        <div class="col-sm-3">
-          <i class="fa fa-linkedin-square"></i>
-          <p>Connect on LinkedIn</p>
+        <div class="col-sm-4">
+          <a href="https://www.linkedin.com/in/abdirahman-abdullahi-376074363/" target="_blank">
+                <i class="fa fa-linkedin-square" aria-hidden="true"></i><h4>Connect on LinkedIn</h4>
+          </a>
         <!--Closed first column-->
         </div>
 
         <!--Opened second column--> 
-        <div class="col-sm-3">
-          <i class="fa fa-instagram"></i>
-          <p>Follow on Instagram</p>
+        <div class="col-sm-4">
+          <a href="https://github.com/Aabdullahi2301" target="_blank">
+          <i class="fa fa-github"></i>
+          <h4>Connect on Github</h4>
+          </a>
         <!--Closed second column-->
         </div>
         
         <!--Opened third column-->
-        <div class="col-sm-3">
-          <i class="fa fa-youtube-play"></i>
-          <p>Subscribe on YouTube</p>
+        <div class="col-sm-4">
+          <a href="mailto:Aabdulahi2301@gmail.com" target="_blank">
+          <i class="fa fa-envelope"></i>
+          <h4>Email Me</h4>
+          </a>
         <!--Closed third column-->
         </div>
-        
-        <!--Opened fourth column-->
-        <div class="col-sm-3">
-          <i class="fa fa-facebook-square"></i>
-          <p>Follow on Facebook</p>
-        <!--Closed fourth column-->
+      <!--Closed first row--> 
+      </div>  
+      <div class="row">
+        <div class="col-sm-12">
+          <br><small>&copy; Abdirahman 2025. All rights reserved.</small>
         </div>
-  
-      <!--Closed first row-->
-      </div>
+      </div> 
   </footer>
 
   <!--jQuery, Popper, and Bootstrap Javascript files-->
